@@ -1,10 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class='pagetitle'>レビュー投稿ページ</h1>
+    <h1 class='pagetitle'>レビュー投稿ページ</h1>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
 <div class="row justify-content-center container">
     <div class="col-md-10">
-      <form method='POST' action="" enctype="multipart/form-data">
+      <form method='POST' action="{{ route('store') }}" enctype="multipart/form-data">
         <!--enctype="multipart/form-data"　この指定は文字データの登録ならば不要だが、画像やPDFなどのファイルをアップロードしたい場合、必ず必要-->
         @csrf
         <div class="card">
